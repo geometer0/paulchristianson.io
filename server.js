@@ -23,7 +23,7 @@ let server = http.createServer((req,res) => {
 
     let serverPath = './html/404.html';
     let status = 404;
-    
+
     if (clientPath == '/') {
         serverPath = './html/index.html'
         status = 200;
@@ -31,9 +31,10 @@ let server = http.createServer((req,res) => {
         console.log("Hi, you've reached clientExtension in dirs")
         console.log("directory found: ",dirs[clientExtension])
         serverPath = path.join(__dirname, dirs[clientExtension], clientFile)
-        console.log("Serverpath set to ",serverPath)
-        status = 200;
-        //once this works add check if file exists otherwise 404
+        if (fs.existsSync(serverPath)) {
+            console.log("Serverpath set to ",serverPath)
+            status = 200;
+        }
     }
 
     res.writeHead(status, {'Content-Type': extensions[clientExtension] || 'text/html'} );
