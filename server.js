@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const url = require('url');
+const { Stream } = require('stream');
 
 let server = http.createServer((req,res) => {
     const clientPath = url.parse(req.url).pathname;
@@ -44,6 +45,11 @@ let server = http.createServer((req,res) => {
 
     res.writeHead(status, {'Content-Type': extensions[clientExtension] || 'text/html'} );
     
-    fs.createReadStream(serverPath).pipe(res);
+    const stream = fs.createReadStream(serverPath);
+    stream.on('error', error => {
+        console.error('Stream error:', error);
+        res.end();
+    })
+    stream.pipe(res);
 });
 server.listen(8080)
