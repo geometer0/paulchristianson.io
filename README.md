@@ -1,10 +1,4 @@
 Issues
 
-* it's not properly checking path, only the last file?
-http://localhost:8080/anynonsensehere/index.html loads index.html fine
-* some links are wrong, also add target="_blank" to links
 * error handling in stream
-
-Testing
-
-check stuff like http://localhost:8080/anynonsensehere/index.html
+* fix project links - need to actually set them up on github/pages first
