@@ -1,3 +1,5 @@
-Issues
+To Do
 
-* fix project links - need to actually set them up on github/pages first
+* add caching headers
+* add login
+* look into logs on server before pushing this live
