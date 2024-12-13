@@ -59,3 +59,8 @@ a:hover {
         padding: 1rem;
     }
 }
+
+#mailto {
+    margin-top: 3rem;
+    font-size: 11pt;
+}

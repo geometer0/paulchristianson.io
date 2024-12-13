@@ -39,6 +39,10 @@ let server = http.createServer((req,res) => {
             serverPath = '/html/404.html'
         }
     }
+    if (clientPath.includes('..')) { //path traversal check, though this should be prevented by publicFiles check
+        serverPath = './html/404.html';
+        status = 403;
+    }
 
     res.writeHead(status, {'Content-Type': extensions[clientExtension] || 'text/html'} );
     
