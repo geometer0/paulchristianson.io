@@ -16,6 +16,8 @@ let server = http.createServer((req,res) => {
     }
 
     const publicFiles = {
+        '/': './html/index.html',
+        '/index.html': './html/index.html',
         '/index.css': 'css/index.css',
         '/404.html': 'html/404.html',
         '/404.css': 'css/404.css',
@@ -25,12 +27,7 @@ let server = http.createServer((req,res) => {
     let serverPath = './html/404.html';
     let status = 404;
 
-    if (clientPath == '/' || clientPath == '/index.html') {
-        console.log("Request for index detected, server path set to ./html/index.html")
-        serverPath = './html/index.html'
-        console.log('Server path set to ',serverPath)
-        status = 200;
-    } else if (clientPath in publicFiles) { //only check fs for files in publicFiles list
+    if (clientPath in publicFiles) { //only check fs for files in publicFiles list
         console.log("Routing found in publicFiles: ",publicFiles[clientPath])
         serverPath = path.join(__dirname,publicFiles[clientPath])
         console.log("Checking server...")
