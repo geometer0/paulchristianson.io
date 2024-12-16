@@ -23,6 +23,12 @@ Object.entries(publicFiles).forEach(([route, file]) => {
     })
 })
 
+//app.use(express.static(__dirname));
+
+app.use((req, res) => {
+    res.status(404).sendFile(path.join(__dirname, 'html/404.html'));
+});
+
 const PORT = 8080;
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
